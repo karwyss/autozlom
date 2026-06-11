@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Profesjonalne złomowanie i kasacja pojazdów. Szybki odbiór, legalna kasacja, uczciwa wycena. Zadzwoń: +48 790 710 252">
+<!-- <meta name="keywords" content="złomowanie aut, kasacja pojazdów, skup aut, wyrejestrowanie samochodu, złom samochodowy"> -->
+<title>AUTO ZŁOM – Kasacja Pojazdów | +48 790 710 252</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  /* === PALETTE FROM PHOTO ===
+     Background texture: near-black warm wood  #0e0c0b
+     Dark surface:                              #1b1816
+     Card surface:                              #252120
+     Elevated card:                             #2e2a28
+     Border default:                            #3a3532
+     Border hover:                              #d63a2a (red accent)
+     White text:                                #f2f0ee
+     Muted text:                                #8a8380
+     Red accent (logo red):                     #d63a2a
+     Red hover:                                 #b82e1f
+  */
+  :root{
+    --bg:       #0e0c0b;
+    --surface:  #1b1816;
+    --card:     #252120;
+    --card-hi:  #2e2a28;
+    --border:   #3a3532;
+    --white:    #f2f0ee;
+    --muted:    #8a8380;
+    --red:      #d63a2a;
+    --red-hi:   #b82e1f;
+
+    /* Unified card hover — every interactive tile uses these exact values */
+    --card-hover-bg:     #2e2a28;
+    --card-hover-border: #d63a2a;
+    --card-hover-lift:   translateY(-4px);
+    --card-transition:   background .22s ease, border-color .22s ease, transform .22s ease;
+  }
+
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
+
+  /* ── NAVBAR ── */
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(14,12,11,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);transition:all .3s}
+  nav.scrolled{background:rgba(14,12,11,.99);box-shadow:0 2px 24px rgba(0,0,0,.6)}
+  .nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;color:var(--white);text-decoration:none;letter-spacing:.04em}
+  .nav-logo span{color:var(--red)}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .2s;letter-spacing:.03em}
+  .nav-links a:hover{color:var(--white)}
+  .nav-phone{display:inline-flex;align-items:center;gap:.5rem;background:var(--red);color:var(--white);padding:.5rem 1.1rem;border-radius:4px;font-weight:600;font-size:.875rem;text-decoration:none;border:1px solid var(--red);transition:background .2s,border-color .2s}
+  .nav-phone:hover{background:var(--red-hi);border-color:var(--red-hi)}
+  .hamburger{display:none;background:none;border:none;cursor:pointer;padding:.25rem;color:var(--white);font-size:1.2rem}
+
+  /* ── HERO ── */
+  #hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--bg)}
+  .hero-bg{position:absolute;inset:0;background-image:url('images/background-hero.png');background-size:cover;background-position:center 40%;background-repeat:no-repeat}
+  .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right, rgba(14,12,11,.92) 0%, rgba(14,12,11,.75) 50%, rgba(14,12,11,.55) 100%)}
+  .hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:6rem 1.5rem 4rem;width:100%}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(214,58,42,.1);border:1px solid rgba(214,58,42,.35);padding:.3rem .9rem;border-radius:2px;font-size:.72rem;font-weight:600;letter-spacing:.13em;color:var(--red);text-transform:uppercase;margin-bottom:1.5rem}
+  .hero-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:800;line-height:1.0;letter-spacing:-.01em;color:var(--white);margin-bottom:1.2rem;max-width:760px}
+  .hero-title em{color:var(--red);font-style:normal}
+  .hero-sub{font-size:clamp(.95rem,2vw,1.15rem);color:var(--muted);max-width:500px;line-height:1.65;margin-bottom:2.5rem}
+  .hero-btns{display:flex;flex-wrap:wrap;gap:1rem}
+  .hero-stats{display:flex;gap:2.5rem;margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap}
+  .hero-stat-val{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:800;color:var(--red)}
+  .hero-stat-label{font-size:.75rem;color:var(--muted);margin-top:.15rem;letter-spacing:.06em;text-transform:uppercase}
+
+  /* ── BUTTONS — two types, both consistent ── */
+  .btn-primary{display:inline-flex;align-items:center;gap:.6rem;background:var(--red);color:var(--white);padding:.85rem 1.8rem;border-radius:4px;font-weight:700;font-size:1rem;text-decoration:none;border:1px solid var(--red);cursor:pointer;transition:background .2s,border-color .2s,transform .2s;font-family:'Inter',sans-serif;letter-spacing:.01em}
+  .btn-primary:hover{background:var(--red-hi);border-color:var(--red-hi);transform:translateY(-2px)}
+  .btn-secondary{display:inline-flex;align-items:center;gap:.6rem;background:transparent;color:var(--white);padding:.85rem 1.8rem;border-radius:4px;font-weight:600;font-size:1rem;text-decoration:none;border:1px solid var(--border);cursor:pointer;transition:background .2s,border-color .2s,transform .2s;font-family:'Inter',sans-serif}
+  .btn-secondary:hover{border-color:var(--red);background:rgba(214,58,42,.08);transform:translateY(-2px)}
+
+  /* ── SECTIONS ── */
+  section{padding:5rem 1.5rem}
+  .container{max-width:1200px;margin:0 auto}
+  .section-label{font-size:.72rem;font-weight:600;letter-spacing:.14em;color:var(--red);text-transform:uppercase;margin-bottom:.75rem}
+  .section-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;color:var(--white);line-height:1.05;margin-bottom:1.25rem}
+  .section-title span{color:var(--red)}
+  .divider{width:40px;height:3px;background:var(--red);margin-bottom:2rem;border-radius:1px}
+
+  /* ── O NAS ── */
+  #onas{background:var(--surface)}
+  .onas-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:4rem;align-items:stretch}
+  .onas-text p{color:var(--muted);line-height:1.8;font-size:.95rem;margin-bottom:1.5rem}
+  .onas-features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+
+  /* UNIFIED CARD HOVER — all interactive tiles use this */
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:6px;
+    transition:var(--card-transition);
+  }
+  .card:hover{
+    background:var(--card-hover-bg);
+    border-color:var(--card-hover-border);
+    transform:var(--card-hover-lift);
+  }
+
+  .feature-tile{padding:1.25rem}
+  .feature-tile i{font-size:1.4rem;color:var(--red);margin-bottom:.75rem;display:block}
+  .feature-tile strong{display:block;font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:.25rem}
+  .feature-tile span{font-size:.8rem;color:var(--muted);line-height:1.5}
+
+  .onas-img{position:relative}
+  .onas-img-inner{border-radius:6px;overflow:hidden;position:relative;height:480px;display:flex;align-items:center;justify-content:center}
+  .onas-img-inner img{width:100%;height:100%;object-fit:cover;padding:0}
+  .onas-badge{position:absolute;bottom:1.5rem;left:1.5rem;background:var(--red);color:var(--white);padding:.7rem 1.2rem;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:.05em}
+
+  /* ── USŁUGI ── */
+  #uslugi{background:var(--bg)}
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;margin-top:3rem}
+  .service-card{padding:1.75rem;cursor:default}
+  .service-card i{font-size:1.75rem;color:var(--red);margin-bottom:1rem;display:block}
+  .service-card h3{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:.5rem}
+  .service-card p{font-size:.85rem;color:var(--muted);line-height:1.65}
+
+  /* ── DLACZEGO MY ── */
+  #dlaczego{background:var(--surface)}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:3rem}
+  .why-card{padding:2rem 1.5rem;text-align:center}
+  .why-icon{width:54px;height:54px;background:rgba(214,58,42,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:1px solid rgba(214,58,42,.25);transition:background .22s,border-color .22s}
+  .why-card:hover .why-icon{background:rgba(214,58,42,.18);border-color:rgba(214,58,42,.5)}
+  .why-icon i{font-size:1.35rem;color:var(--red)}
+  .why-num{font-family:'Barlow Condensed',sans-serif;font-size:2.4rem;font-weight:800;color:var(--red);line-height:1;margin-bottom:.2rem}
+  .why-unit{font-size:.85rem;color:var(--muted);margin-bottom:.5rem}
+  .why-label{font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:.4rem}
+  .why-desc{font-size:.8rem;color:var(--muted);line-height:1.55}
+
+  /* ── GALERIA ── */
+  #galeria{background:var(--bg)}
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}
+  .gallery-item{position:relative;overflow:hidden;border-radius:6px;cursor:pointer;aspect-ratio:4/3;background:var(--card);border:1px solid var(--border);transition:border-color .22s,transform .22s}
+  .gallery-item:hover{border-color:var(--red);transform:var(--card-hover-lift)}
+  .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+  .gallery-item:hover img{transform:scale(1.05)}
+  .gal-overlay{position:absolute;inset:0;background:rgba(214,58,42,0);display:flex;align-items:center;justify-content:center;transition:background .25s}
+  .gallery-item:hover .gal-overlay{background:rgba(214,58,42,.22)}
+  .gal-overlay i{color:var(--white);font-size:1.5rem;opacity:0;transform:scale(.75);transition:opacity .25s,transform .25s}
+  .gallery-item:hover .gal-overlay i{opacity:1;transform:scale(1)}
+  .gallery-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;color:var(--border)}
+  .gallery-placeholder i{font-size:2rem}
+  .gallery-placeholder span{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+
+  /* ── LIGHTBOX ── */
+  .lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.96);align-items:center;justify-content:center;cursor:zoom-out}
+  .lightbox.active{display:flex}
+  .lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:6px}
+  .lightbox-close{position:fixed;top:1.5rem;right:1.5rem;background:rgba(242,240,238,.08);border:1px solid var(--border);cursor:pointer;color:var(--white);width:44px;height:44px;border-radius:50%;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+  .lightbox-close:hover{background:var(--red);border-color:var(--red)}
+
+  /* ── OPINIE ── */
+  #opinie{background:var(--surface)}
+  .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:3rem}
+  .review-card{padding:1.75rem}
+  .stars{color:#e8a020;font-size:.9rem;margin-bottom:1rem;letter-spacing:.08em}
+  .review-text{font-size:.9rem;color:var(--white);line-height:1.75;margin-bottom:1.25rem;font-style:italic}
+  .review-author{display:flex;align-items:center;gap:.75rem;padding-top:1rem;border-top:1px solid var(--border)}
+  .avatar{width:38px;height:38px;border-radius:50%;background:rgba(214,58,42,.12);border:1px solid rgba(214,58,42,.3);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;color:var(--red);font-family:'Barlow Condensed',sans-serif;flex-shrink:0}
+  .author-name{font-size:.85rem;font-weight:600;color:var(--white)}
+  .author-meta{font-size:.75rem;color:var(--muted)}
+
+  /* ── KONTAKT ── */
+  #kontakt{background:var(--bg)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:3rem}
+  .contact-info{display:flex;flex-direction:column;gap:1rem}
+  .contact-item{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem}
+  .contact-item i{font-size:1.2rem;color:var(--red);margin-top:.1rem;flex-shrink:0}
+  .contact-item-label{font-size:.72rem;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.25rem}
+  .contact-item-val{font-size:.95rem;color:var(--white);font-weight:500;line-height:1.6}
+  .contact-item-val a{color:var(--white);text-decoration:none;transition:color .2s}
+  .contact-item-val a:hover{color:var(--red)}
+  .contact-cta{padding:2rem;display:flex;flex-direction:column}
+  .contact-cta h3{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:700;color:var(--white);margin-bottom:.75rem}
+  .contact-cta p{font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.75rem}
+  .contact-cta .btn-primary{justify-content:center;font-size:1rem;padding:1rem}
+  .contact-cta .btn-secondary{justify-content:center;margin-top:.75rem}
+
+  /* ── FOOTER ── */
+  footer{background:var(--surface);border-top:1px solid var(--border);padding:2rem 1.5rem}
+  .footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+  .footer-copy{font-size:.8rem;color:var(--muted)}
+  .footer-links{display:flex;gap:1.5rem}
+  .footer-links a{font-size:.8rem;color:var(--muted);text-decoration:none;transition:color .2s}
+  .footer-links a:hover{color:var(--white)}
+
+  /* ── BACK TO TOP ── */
+  #back-top{position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;background:var(--red);border:1px solid var(--red);cursor:pointer;border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1rem;opacity:0;pointer-events:none;transition:opacity .3s,transform .2s;z-index:900}
+  #back-top.visible{opacity:1;pointer-events:all}
+  #back-top:hover{background:var(--red-hi);transform:translateY(-3px)}
+
+  /* ── FADE-IN ── */
+  .fade-in{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+  .fade-in.visible{opacity:1;transform:translateY(0)}
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:900px){
+    .onas-grid,.contact-grid{grid-template-columns:1fr}
+    .gallery-grid{grid-template-columns:repeat(2,1fr)}
+    .nav-links{display:none}
+  }
+  @media(max-width:600px){
+    .hero-stats{gap:1.5rem}
+    .onas-features{grid-template-columns:1fr}
+    .hamburger{display:block}
+    .footer-inner{flex-direction:column;text-align:center}
+  }
+  @media(max-width:400px){
+    .gallery-grid{grid-template-columns:1fr}
+  }
+
+  /* ── MOBILE MENU ── */
+  .nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(14,12,11,.98);border-bottom:1px solid var(--border);z-index:999;padding:1rem 1.5rem;flex-direction:column;gap:.25rem}
+  .nav-mobile.open{display:flex}
+  .nav-mobile a{color:var(--muted);text-decoration:none;font-size:1rem;padding:.6rem 0;border-bottom:1px solid var(--border);font-weight:500;transition:color .2s}
+  .nav-mobile a:last-child{border-bottom:none}
+  .nav-mobile a:hover{color:var(--white)}
+
+
+  .btn-facebook:hover{
+  background:rgba(24,119,242,.15);
+  border-color:#1877F2;
+  color:#1877F2;
+  transform:translateY(-2px);
+}
+
+.btn-facebook-i:hover{
+  background:rgba(24,119,242,.15);
+  border-color:#1877F2;
+  color:#1877F2;
+  transform:translateY(-2px);
+}
+.btn-facebook-i:hover i, .btn-facebook-i:hover div, .btn-facebook-i:hover a{
+  color:#1877F2;
+}
+
+#fb-float{
+    position:fixed;
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:950;
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+    background:#1877F2;
+    color:#fff;
+    text-decoration:none;
+    font-size:.82rem;
+    font-weight:600;
+    padding:.75rem .9rem;
+    border-radius:8px 0 0 8px;
+    border:1px solid rgba(255,255,255,.15);
+    border-right:none;
+    box-shadow:-3px 0 16px rgba(0,0,0,.4);
+    /* transition:padding .25s ease,background .2s; */
+    white-space:nowrap;
+    overflow:hidden;
+    max-width: 44px;
+    transition: max-width .3s ease, padding .3s ease, background .2s;
+  }
+  #fb-float i{font-size:1.1rem;flex-shrink:0}
+  #fb-float span{
+  opacity: 0;
+  max-width: 0;
+  transition: opacity .3s ease, max-width .3s ease;
+}
+  #fb-float:hover{
+  background: #0d65d9;
+  padding: .75rem 1.1rem;
+  max-width: 200px;
+}
+#fb-float:hover span{
+  opacity: 1;
+  max-width: 140px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <img src="images/IMG_1713.png" alt="AUTO ZŁOM" style="width:72px;height:72px;object-fit:contain;border-radius:4px;margin-top:15px;margin-bottom:15px">
+    <a href="#hero" class="nav-logo" style="font-size:2rem;">AUTO<span>ZŁOM</span></a>
+    <ul class="nav-links">
+      <li><a href="#onas">O nas</a></li>
+      <li><a href="#uslugi">Usługi</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#opinie">Opinie</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="tel:+48790710252" class="nav-phone"><i class="fas fa-phone"></i> Zadzwoń już teraz!</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="#onas" onclick="closeMobile()">O nas</a>
+  <a href="#uslugi" onclick="closeMobile()">Usługi</a>
+  <a href="#galeria" onclick="closeMobile()">Galeria</a>
+  <a href="#opinie" onclick="closeMobile()">Opinie</a>
+  <a href="#kontakt" onclick="closeMobile()">Kontakt</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow fade-in"><i class="fas fa-shield-halved"></i> Legalna kasacja</div>
+    <h1 class="hero-title fade-in">Profesjonalne<br><em>Złomowanie oraz </em>Kasacja aut<br><em>W Zabrzu</em></h1>
+    <p class="hero-sub fade-in">Szybki odbiór samochodu, legalna kasacja i uczciwa wycena. Działamy kompleksowo – od wyceny po wyrejestrowanie.</p>
+    <div class="hero-btns fade-in">
+      <a href="tel:+48790710252" class="btn-primary"><i class="fas fa-phone"></i> Zadzwoń już teraz</a>
+      <a href="https://www.facebook.com/share/18rBieqjSQ/?mibextid=wwXIfr" target="_blank" rel="noopener" class="btn-secondary btn-facebook"><i class="fab fa-facebook-f"></i> Napisz na Facebooku</a>
+    </div>
+    <!-- <div class="hero-stats fade-in">
+      <div>
+        <div class="hero-stat-val" data-target="100">100</div>
+        <div class="hero-stat-label">% LEGALNIE</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">24h</div>
+        <div class="hero-stat-label">CZAS ODBIORU</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">0 zł</div>
+        <div class="hero-stat-label">KOSZT WYCENY</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">100%</div>
+        <div class="hero-stat-label">FORMALNOŚCI</div>
+      </div>
+    </div> -->
+  </div>
+</section>
+
+<!-- O NAS -->
+<section id="onas">
+  <div class="container">
+    <div class="onas-grid">
+      <div class="onas-text fade-in">
+        <div class="section-label">O nas</div>
+        <h2 class="section-title">Kim <span>jesteśmy?</span></h2>
+        <div class="divider"></div>
+        <p>Nasza firma specjalizuje się w profesjonalnym złomowaniu i kasacji pojazdów wszystkich marek. Oferujemy szybki odbiór samochodów, legalne wyrejestrowanie pojazdu oraz wystawienie niezbędnych dokumentów potwierdzających demontaż.</p>
+        <p>Skupujemy auta osobowe, dostawcze, powypadkowe, niesprawne oraz przeznaczone do kasacji. Gwarantujemy uczciwą wycenę, sprawną obsługę oraz działania zgodne z obowiązującymi przepisami ochrony środowiska. Działamy szybko, bezpiecznie i kompleksowo, zapewniając klientom wygodne rozwiązanie problemu nieużywanego pojazdu.</p>
+        <div class="onas-features">
+          <div class="card feature-tile">
+            <i class="fas fa-certificate"></i>
+            <strong>Legalna kasacja</strong>
+            <span>Pełna dokumentacja i wyrejestrowanie</span>
+          </div>
+          <div class="card feature-tile">
+            <i class="fas fa-truck-ramp-box"></i>
+            <strong>Odbiór pojazdu</strong>
+            <span>Przyjedziemy pod wskazany adres</span>
+          </div>
+          <div class="card feature-tile">
+            <i class="fas fa-hand-holding-dollar"></i>
+            <strong>Uczciwa wycena</strong>
+            <span>Transparentna i bezpłatna wycena</span>
+          </div>
+          <div class="card feature-tile">
+            <i class="fas fa-bolt"></i>
+            <strong>Szybka realizacja</strong>
+            <span>Odbiór już w ciągu 24 godzin</span>
+          </div>
+        </div>
+      </div>
+      <div class="onas-img fade-in" style="height: 100%;">
+        <div class="card onas-img-inner" style="height: 100%; display: flex;">
+          <img src="images/zlom1.jpeg" alt="Złomowanie aut" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USŁUGI -->
+<section id="uslugi">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Co oferujemy</div>
+      <h2 class="section-title">Złomowanie i <span>Skup Aut - Oferta</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="card service-card fade-in">
+        <i class="fas fa-car-burst"></i>
+        <h3>Kasacja Pojazdów</h3>
+        <p>Kompleksowa kasacja pojazdów wszystkich marek i roczników. Pełna dokumentacja zgodna z przepisami.</p>
+      </div>
+      <div class="card service-card fade-in">
+        <i class="fas fa-car-crash"></i>
+        <h3>Skup Aut Powypadkowych</h3>
+        <p>Skupujemy auta po kolizjach, wypadkach i zdarzeniach losowych. Uczciwa wycena niezależna od stanu.</p>
+      </div>
+      <div class="card service-card fade-in">
+        <i class="fas fa-truck-moving"></i>
+        <h3>Odbiór Niesprawnych Aut</h3>
+        <p>Przyjedziemy do Ciebie i odbierzemy auto bezpośrednio spod domu lub warsztatu – bezpłatnie.</p>
+      </div>
+      <div class="card service-card fade-in">
+        <i class="fas fa-file-circle-xmark"></i>
+        <h3>Wyrejestrowanie Pojazdu</h3>
+        <p>Zajmujemy się kompleksowym wyrejestrowaniem pojazdu z ewidencji, bez formalności po Twojej stronie.</p>
+      </div>
+      <div class="card service-card fade-in">
+        <i class="fas fa-file-contract"></i>
+        <h3>Wystawianie Dokumentów</h3>
+        <p>Wystawiamy wszelkie wymagane zaświadczenia i certyfikaty potwierdzające demontaż pojazdu.</p>
+      </div>
+      <div class="card service-card fade-in">
+        <i class="fas fa-recycle"></i>
+        <h3>Złomowanie Aut Osobowych i Dostawczych</h3>
+        <p>Przyjmujemy pojazdy osobowe, dostawcze i inne – niezależnie od marki, stanu technicznego czy roku produkcji.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DLACZEGO MY -->
+<section id="dlaczego">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Nasze atuty</div>
+      <h2 class="section-title">Dlaczego <span>My?</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="why-grid">
+      <div class="card why-card fade-in">
+        <div class="why-icon"><i class="fas fa-gavel"></i></div>
+        <div class="why-num counter" data-target="100">0</div>
+        <div class="why-unit">%</div>
+        <div class="why-label">Legalnie</div>
+        <div class="why-desc">Działamy w pełnej zgodności z przepisami prawa i normami ochrony środowiska</div>
+      </div>
+      <div class="card why-card fade-in">
+        <div class="why-icon"><i class="fas fa-clock"></i></div>
+        <div class="why-num">24</div>
+        <div class="why-unit">godziny</div>
+        <div class="why-label">Szybki odbiór</div>
+        <div class="why-desc">Odbiór pojazdu w ciągu doby od zgłoszenia – działamy sprawnie i punktualnie</div>
+      </div>
+      <div class="card why-card fade-in">
+        <div class="why-icon"><i class="fas fa-layer-group"></i></div>
+        <div class="why-num">od A do Z</div>
+        <div class="why-unit">&nbsp;</div>
+        <div class="why-label">Kompleksowa obsługa</div>
+        <div class="why-desc">Od wyceny, przez odbiór, aż po wyrejestrowanie – wszystko w jednym miejscu</div>
+      </div>
+      <div class="card why-card fade-in">
+        <div class="why-icon"><i class="fas fa-star"></i></div>
+        <div class="why-num counter" data-target="5">0</div>
+        <div class="why-unit">★★★★★</div>
+        <div class="why-label">Profesjonalne podejście</div>
+        <div class="why-desc">Indywidualne podejście do każdego klienta i pojazdu, zawsze z szacunkiem</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Realizacje</div>
+      <h2 class="section-title">Galeria</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item fade-in" onclick="openLightbox('images/zdj1.jpg')">
+        <img src="images/zdj1.jpg" alt="Kasacja powypadkowego samochodu osobowego">
+        <div class="gal-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('images/zdj2.jpg')">
+        <img src="images/zdj2.jpg" alt="Złomowanie starego auta Fiat na Śląsku">
+        <div class="gal-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('images/zdj3.jpg')">
+        <img src="images/zdj3.jpg" alt="Transport uszkodzonego samochodu na lawecie">
+        <div class="gal-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('images/zdj4.jpg')">
+        <img src="images/zdj4.jpg" alt="Kasacja uszkodzonego pojazdu osobowego w Zabrzu">
+        <div class="gal-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('images/zdj5.jpg')">
+        <img src="images/zdj5.jpg" alt="Transport uszkodzonego czarnego samochodu osobowego na lawecie na Śląsku">
+        <div class="gal-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openLightbox('images/zdj6.jpg')">
+        <img src="images/zdj6.jpg" alt="Transport uszkodzonego srebrnego samochodu osobowego na lawecie firmy AutoZłom w Zabrzu">
+        <div class="gal-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-xmark"></i></button>
+  <img id="lightbox-img" src="" alt="Podgląd zdjęcia">
+</div>
+
+<!-- OPINIE -->
+<section id="opinie">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Co mówią klienci</div>
+      <h2 class="section-title">Opinie</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="reviews-grid">
+      <div class="card review-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">„Sprawna obsługa i szybki odbiór auta. Telefon rano, auto odebrane po południu. Wszystkie dokumenty dostarczone na miejscu. Polecam z czystym sumieniem!"</p>
+        <div class="review-author"><div class="avatar">MK</div><div><div class="author-name">Marek Kowalski</div><div class="author-meta">Klient – Gliwice</div></div></div>
+      </div>
+      <div class="card review-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">„Uczciwa wycena i wszystkie formalności załatwione od ręki. Nie spodziewałam się, że kasacja samochodu może być tak prosta. Polecam każdemu!"</p>
+        <div class="review-author"><div class="avatar">AW</div><div><div class="author-name">Anna Wiśniewska</div><div class="author-meta">Klientka – Katowice</div></div></div>
+      </div>
+      <div class="card review-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">„Profesjonalne podejście i świetny kontakt. Pan był punktualny, miły i dokładny. Całość zajęła niecałą godzinę. Bardzo polecam tę firmę!"</p><br>
+        <div class="review-author"><div class="avatar">PZ</div><div><div class="author-name">Piotr Zając</div><div class="author-meta">Klient – Zabrze</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Skontaktuj się</div>
+      <h2 class="section-title">Kontakt</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <div class="card contact-item">
+          <i class="fas fa-phone"></i>
+          <div>
+            <div class="contact-item-label">Telefon</div>
+            <div class="contact-item-val"><a href="tel:+48790710252">+48 790 710 252</a></div>
+          </div>
+        </div>
+        <div class="card contact-item">
+          <i class="fas fa-clock"></i>
+          <div>
+            <div class="contact-item-label">Godziny otwarcia</div>
+            <div class="contact-item-val" style="font-size:.9rem;line-height:1.7">Poniedziałek – Sobota: 8:00 – 18:00<br>Niedziela: 10:00 – 16:00</div>
+          </div>
+        </div>
+        <div class="card contact-item btn-facebook-i">
+          <i class="fab fa-facebook-f"></i>
+          <div>
+            <div class="contact-item-label">Facebook</div>
+            <div class="contact-item-val"><a href="https://www.facebook.com/share/18rBieqjSQ/?mibextid=wwXIfr" target="_blank" rel="noopener">AUTO ZŁOM – Napisz do nas</a></div>
+          </div>
+        </div>
+        <div class="card contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <div class="contact-item-label">Obszar działania</div>
+            <div class="contact-item-val" style="font-size:.9rem">Zabrze</div>
+          </div>
+        </div>
+      </div>
+      <div class="card contact-cta fade-in">
+        <h3>Gotowy na szybką wycenę?</h3>
+        <p>Zadzwoń lub napisz do nas na Facebooku – bezpłatna wycena bez zobowiązań. Odbiór auta już w ciągu 24 godzin od kontaktu.</p>
+        <a href="tel:+48790710252" class="btn-primary"><i class="fas fa-phone"></i> Zadzwoń już teraz!</a>
+        <a href="https://www.facebook.com/share/18rBieqjSQ/?mibextid=wwXIfr" target="_blank" rel="noopener" class="btn-secondary btn-facebook"><i class="fab fa-facebook-f"></i> Napisz do nas na Facebooku</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© <script>document.write(new Date().getFullYear());</script> Karol Wysogląd – Projekt strony internetowej. Wszelkie prawa zastrzeżone.</div>
+    <!-- <div class="footer-links">
+      <a href="#onas">O nas</a>
+      <a href="#uslugi">Usługi</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="tel:+48790710252">+48 790 710 252</a>
+    </div> -->
+  </div>
+</footer>
+
+<a href="https://www.facebook.com/share/18rBieqjSQ/?mibextid=wwXIfr" target="_blank" rel="noopener" id="fb-float" aria-label="Facebook">
+  <i class="fab fa-facebook-f"></i>
+  <span>Napisz do nas</span>
+</a>
+
+<!-- BACK TO TOP -->
+<button id="back-top" aria-label="Wróć do góry" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<div style="position:fixed;bottom:10px;left:10px;z-index:9999;
+background:red;color:white;padding:30px;border-radius:5px;">
+WERSJA DEMO
+</div>
+
+
+<script>
+// Navbar scroll
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',window.scrollY>60);
+  document.getElementById('back-top').classList.toggle('visible',window.scrollY>300);
+});
+
+// Hamburger
+document.getElementById('hamburger').addEventListener('click',()=>{
+  document.getElementById('navMobile').classList.toggle('open');
+});
+function closeMobile(){document.getElementById('navMobile').classList.remove('open')}
+
+// Fade in on scroll
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:.12});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// Counters
+function animateCounter(el,target,duration=1500){
+  let start=0,step=target/60;
+  const t=setInterval(()=>{
+    start+=step;
+    if(start>=target){el.textContent=target;clearInterval(t);}
+    else el.textContent=Math.floor(start);
+  },duration/60);
+}
+const counterObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const target=parseInt(e.target.dataset.target);
+      animateCounter(e.target,target);
+      counterObs.unobserve(e.target);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>counterObs.observe(el));
+
+// Lightbox
+function openLightbox(src){
+  document.getElementById('lightbox-img').src=src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+</script>
+</body>
+</html>
